@@ -35,20 +35,37 @@ module.exports = {
                 })
             }
             else{
-                bcrypt.hash(req.body.password, 12,(err,hashPassword)=>{
-                    if(err) throw err
-                    const user = new User({
-                        email: req.body.email,
-                        password: hashPassword,
-                        name: req.body.name,
-                    })
-                    user.save((err,response)=>{
+                if(req.body.password){
+                    bcrypt.hash(req.body.password, 12,(err,hashPassword)=>{
                         if(err) throw err
-                        return res.status(200).send({
-                            message:"OK"
+                        const user = new User({
+                            email: req.body.email,
+                            password: hashPassword,
+                            name: req.body.name,
+                        })
+                        user.validate((validate)=>{
+                            if(validate !== null){
+                                return res.status(200).send({
+                                    message:"ERROR",
+                                    result:validate.message
+                                })
+                            }
+                            else{
+                                user.save((err,response)=>{
+                                    if(err) throw err
+                                    return res.status(200).send({
+                                        message:"OK"
+                                    })
+                                })
+                            }
                         })
                     })
-                })
+                }
+                else{
+                    return res.status(200).send({
+                        message:"PASSWORD_IS_REQUIRED"
+                    })
+                }
             }
         })
     }

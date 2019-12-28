@@ -4,4 +4,5 @@ const jwtConfig = require('../middlewares/jwtConfig')
 module.exports = (router) =>{
     router.route('/posts')
         .get(jwtConfig.verify, PostController.getAllPost)
+        .post(jwtConfig.verify, PostController.createNewPost)
 }
