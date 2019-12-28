@@ -4,6 +4,7 @@ module.exports = (router) =>{
     router.route('/users')
         .get(UserController.getAllUsers)
 
-    router.route('/user/:id')
+    router.route('/users/:id')
         .get(UserController.getUserByID)
+        .put(UserController.updateUserByID)
 }

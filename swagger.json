@@ -1,0 +1,223 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "NodeJS MongoDB RESTful API",
+		"description": "Yet Another Node.js Blogg Application API",
+		"license": {
+			"name": "Asep Hakim",
+			"url": "https://github.com/Lukm4nZ3r0"
+		}
+	},
+	"host": "localhost:8000",
+	"basePath": "/",
+	"tags": [],
+	"schemes": [
+		"http"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/login": {
+			"post": {
+				"tags": [
+					"Login"
+				],
+				"summary": "Login Auth",
+				"description": "Login user in system",
+				"parameters": [{
+					"name": "payload",
+					"in": "body",
+					"description": "User that we want to create",
+					"schema": {
+						"$ref": "#/definitions/User"
+					}
+				}],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New user is created",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			}
+        },
+        "/register": {
+			"post": {
+				"tags": [
+					"Register"
+				],
+				"summary": "Register new User",
+				"description": "Register new user in system",
+				"parameters": [{
+					"name": "payload",
+					"in": "body",
+					"description": "User that we want to create",
+					"schema": {
+						"$ref": "#/definitions/User"
+					}
+				}],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New user is created",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			}
+        },
+        "/posts": {
+			"get": {
+				"tags": [
+					"Posts"
+				],
+				"summary": "Get all Post",
+				"description": "Send a Posts Content",
+				"parameters": [{
+					"name": "payload",
+					"in": "body",
+					"description": "User that we want to create",
+					"schema": {
+						"$ref": "#/definitions/User"
+					}
+				}],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New user is created",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+            },
+            "post": {
+				"tags": [
+					"Posts"
+				],
+				"summary": "Create a New Post",
+				"description": "Send a Posts Content",
+				"parameters": [{
+					"name": "payload",
+					"in": "body",
+					"description": "User that we want to create",
+					"schema": {
+						"$ref": "#/definitions/User"
+					}
+				}],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New user is created",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			}
+        },
+        "/users": {
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Get all User",
+				"description": "Send a Posts Content",
+				"parameters": [{
+					"name": "payload",
+					"in": "body",
+					"description": "User that we want to create",
+					"schema": {
+						"$ref": "#/definitions/User"
+					}
+				}],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New user is created",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+            }
+		},
+		"/users/{userId}": {
+			"parameters": [{
+				"name": "userId",
+				"in": "path",
+				"required": true,
+				"description": "ID of user that we want to find",
+				"type": "string"
+			}],
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Get user with given ID",
+				"responses": {
+					"200": {
+						"description": "User is found",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			},
+			"delete": {
+				"summary": "Delete user with given ID",
+				"tags": [
+					"Users"
+				],
+				"responses": {
+					"200": {
+						"description": "User is deleted",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			},
+			"put": {
+				"summary": "Update user with give ID",
+				"tags": [
+					"Users"
+				],
+				"parameters": [{
+					"name": "user",
+					"in": "body",
+					"description": "User with new values of properties",
+					"schema": {
+						"$ref": "#/definitions/User"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "User is updated",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			}
+		}
+	}
+}

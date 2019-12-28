@@ -1,5 +1,5 @@
-const jwtConfig = require('../middlewares/jwtConfig')
 const User = require('../models/User')
+const bcrypt = require('bcryptjs')
 
 module.exports = {
     getAllUsers:(req,res)=>{
@@ -17,6 +17,24 @@ module.exports = {
             return res.status(200).send({
                 message:"OK",
                 result:user
+            })
+        })
+    },
+    updateUserByID:(req,res)=>{
+        bcrypt.hash(req.body.password, 12,(err,hash)=>{
+            if(err) throw err
+            User.findOneAndUpdate({_id:req.params.id},{
+                $set: {
+                    email:req.body.email,
+                    password:hash,
+                    name:req.body.name
+                }
+            },(err,user)=>{
+                if(err) throw err
+                return res.status(200).send({
+                    message:"OK",
+                    result:user
+                })
             })
         })
     }
