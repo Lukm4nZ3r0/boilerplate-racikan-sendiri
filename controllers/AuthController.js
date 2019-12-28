@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
+const jwtConfig = require('../middlewares/jwtConfig')
 
 module.exports = {
     login: (req,res)=>{
@@ -7,10 +8,12 @@ module.exports = {
             email:req.body.email,
         },(err,response)=>{
             if(err) throw err
-            bcrypt.compare(req.body.password, response.password).then((res) => {
-                if(res){
+            bcrypt.compare(req.body.password, response.password, (err,hash)=>{
+                if(err) throw err
+                if(hash){
                     return res.status(200).send({
-                        message:"OK"
+                        message:"OK",
+                        access_token:jwtConfig.sign({email:req.body.email, password:response.password})
                     })
                 }
                 else{
