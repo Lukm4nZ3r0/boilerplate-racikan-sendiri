@@ -13,12 +13,13 @@ const postSchema = new Schema({
     },
     user:{
         type: Schema.Types.ObjectId,
-        ref:'user'
+        ref:'user',
+        required:true
     },
     comments:[
         {
             type: Schema.Types.ObjectId,
-            ref:'comment'
+            ref:'comment',
         }
     ]
 })

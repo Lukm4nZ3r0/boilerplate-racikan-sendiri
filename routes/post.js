@@ -5,4 +5,7 @@ module.exports = (router) =>{
     router.route('/posts')
         .get(jwtConfig.verify, PostController.getAllPost)
         .post(jwtConfig.verify, PostController.createNewPost)
+
+    router.route('/posts/user/:id')
+        .get(jwtConfig.verify, PostController.getPostByUserID)
 }

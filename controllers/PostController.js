@@ -31,5 +31,14 @@ module.exports = {
                 })
             }
         })
+    },
+    getPostByUserID:(req,res)=>{
+        Post.find({user:req.params.id}).populate('comment').exec((err,posts)=>{
+            if(err) throw err
+            return res.status(200).send({
+                message:"OK",
+                result:posts
+            })
+        })
     }
 }
